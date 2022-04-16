@@ -58,15 +58,6 @@ public class TurnService implements ITurnService {
         return mapDTO(turn);
     }
 
-    public TurnDTO guardar(TurnDTO turnDTO){
-        Turn turn = mapEntity(turnDTO);
-
-        Turn turnoBaseDeDatos = turnRepository.save(turn);
-
-        return mapDTO(turnoBaseDeDatos);
-    }
-
-
 
     @Override
     public void deleteById(Integer id) {

@@ -7,6 +7,7 @@ import com.dh.clinica.service.IDentistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -36,6 +37,7 @@ public class DentistController implements CRUDController<DentistDTO> {
         return new ResponseEntity<>(dentistDTOList, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @Override
     @CrossOrigin
     @PostMapping()
@@ -44,6 +46,7 @@ public class DentistController implements CRUDController<DentistDTO> {
         return new ResponseEntity<>(newDentist, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @Override
     @CrossOrigin
     @PutMapping("/{id}")
@@ -55,6 +58,7 @@ public class DentistController implements CRUDController<DentistDTO> {
         return new ResponseEntity<>(dentistResponse, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @Override
     @CrossOrigin
     @DeleteMapping("/{id}")

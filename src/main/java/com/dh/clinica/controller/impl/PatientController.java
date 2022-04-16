@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -28,6 +29,7 @@ public class PatientController implements CRUDController<PatientDTO> {
             return new ResponseEntity<>(patientDTO, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @Override
     @PostMapping()
     public ResponseEntity<PatientDTO> create(@Valid @RequestBody PatientDTO patientDTO) {
@@ -35,6 +37,7 @@ public class PatientController implements CRUDController<PatientDTO> {
         return new ResponseEntity<>(responsePatientDTO, HttpStatus.CREATED);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @Override
     @PutMapping("/{id}")
     public ResponseEntity<?> update(
@@ -45,6 +48,7 @@ public class PatientController implements CRUDController<PatientDTO> {
         return new ResponseEntity<>(responsePatientDTO, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @Override
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteById(@PathVariable("id") Integer id) {

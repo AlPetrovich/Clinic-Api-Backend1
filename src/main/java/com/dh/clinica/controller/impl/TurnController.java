@@ -5,6 +5,7 @@ import com.dh.clinica.service.impl.TurnService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -26,6 +27,7 @@ public class TurnController implements CRUDController<TurnDTO> {
         return ResponseEntity.ok(turnDTO);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @Override
     @PostMapping()
     public ResponseEntity<TurnDTO> create(@Valid @RequestBody TurnDTO turnDTO) {
@@ -33,6 +35,7 @@ public class TurnController implements CRUDController<TurnDTO> {
         return ResponseEntity.ok(saveTurnDTO);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @Override
     @PutMapping("/{id}")
     public ResponseEntity<?> update(TurnDTO turnDTO, Integer id) {
@@ -40,6 +43,7 @@ public class TurnController implements CRUDController<TurnDTO> {
         return ResponseEntity.ok(updateTurnDTO);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @Override
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteById(Integer id) {
@@ -63,9 +67,4 @@ public class TurnController implements CRUDController<TurnDTO> {
         return ResponseEntity.status(HttpStatus.OK).body(turns);
     }
 
-    @PostMapping("/metodoDos")
-    public ResponseEntity<TurnDTO> createNewTurn(@Valid @RequestBody TurnDTO turnDTO){
-       TurnDTO turnDTO1= turnService.guardar(turnDTO);
-       return new ResponseEntity<>(turnDTO1, HttpStatus.CREATED);
-    }
 }
