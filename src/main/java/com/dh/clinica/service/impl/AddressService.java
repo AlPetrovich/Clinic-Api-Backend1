@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,6 +30,7 @@ public class AddressService implements IAddressService {
         return mapDTO(address);
     }
 
+
     @Override
     public AddressDTO create(AddressDTO addressDTO) {
         Address address = mapEntity(addressDTO);
@@ -41,6 +43,7 @@ public class AddressService implements IAddressService {
                 .orElseThrow(()-> new ResourceNotFoundException("Address","id",id));
         addressRepository.delete(address);
     }
+
 
     @Override
     public AddressDTO update(AddressDTO addressDTO, Integer id) {

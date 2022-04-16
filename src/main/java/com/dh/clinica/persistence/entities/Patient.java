@@ -41,9 +41,17 @@ public class Patient {
     private Set<Turn> turns = new HashSet<>();
 
     //------Relacion con Domicilio
-    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "id_address", referencedColumnName = "id")
     private Address address;
+
+    public Patient(String name, String lastname, String dni, LocalDate accessDate, Address address) {
+        this.name = name;
+        this.lastname = lastname;
+        this.dni = dni;
+        this.accessDate = accessDate;
+        this.address = address;
+    }
 
     @Override
     public boolean equals(Object o) {

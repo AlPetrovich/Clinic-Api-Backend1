@@ -6,7 +6,6 @@ import com.dh.clinica.exceptions.ClinicAppException;
 import com.dh.clinica.exceptions.GlobalExceptionHandler;
 import com.dh.clinica.exceptions.ResourceNotFoundException;
 import com.dh.clinica.service.IPatientService;
-import com.dh.clinica.service.impl.PatientService;
 import com.dh.clinica.utils.Mapper;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +25,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;

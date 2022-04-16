@@ -1,14 +1,12 @@
 package com.dh.clinica.persistence.entities;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @AllArgsConstructor
-@NoArgsConstructor
 @Setter
 @Getter
 @Entity
@@ -36,6 +34,16 @@ public class Address {
     //@OneToOne(mappedBy = "domicilio")
     //private Paciente paciente;
 
+
+    public Address(String street, String number, String location, String province) {
+        this.street = street;
+        this.number = number;
+        this.location = location;
+        this.province = province;
+    }
+
+    public Address() {
+    }
 
     @Override
     public boolean equals(Object o) {

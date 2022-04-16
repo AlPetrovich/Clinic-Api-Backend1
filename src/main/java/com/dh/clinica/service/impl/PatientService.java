@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,6 +35,7 @@ public class PatientService implements IPatientService {
     }
 
 
+
     @Override
     public PatientDTO create(PatientDTO patientDTO) {
         if(patientDTO == null){
@@ -56,6 +58,7 @@ public class PatientService implements IPatientService {
     }
 
     // -------------------VER-------------
+
     @Override
     public PatientDTO update(PatientDTO patientDTO, Integer id) {
         Patient patient = patientRepository.findById(id)

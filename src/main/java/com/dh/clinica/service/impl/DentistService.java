@@ -7,6 +7,8 @@ import com.dh.clinica.service.IDentistService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,6 +30,7 @@ public class DentistService implements IDentistService {
         return mapDTO(dentist);
     }
 
+
     @Override
     public DentistDTO create(DentistDTO dentistDTO) {
         if(dentistDTO == null){
@@ -48,6 +51,7 @@ public class DentistService implements IDentistService {
                 .orElseThrow(()-> new ResourceNotFoundException("Odontologo","id",id));
         dentistRepository.delete(dentist);
     }
+
 
     @Override
     public DentistDTO update(DentistDTO dentistDTO, Integer id) {
