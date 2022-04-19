@@ -30,7 +30,7 @@ public class DentistController implements CRUDController<DentistDTO> {
     }
 
     @Override
-    @CrossOrigin
+    //@CrossOrigin
     @GetMapping("/list")
     public ResponseEntity<List<DentistDTO>> findAll() {
         List<DentistDTO> dentistDTOList = dentistService.findAll();
@@ -39,7 +39,7 @@ public class DentistController implements CRUDController<DentistDTO> {
 
     @PreAuthorize("hasRole('ADMIN')")
     @Override
-    @CrossOrigin
+    //@CrossOrigin
     @PostMapping()
     public ResponseEntity<DentistDTO> create(@Valid @RequestBody DentistDTO dentistDTO) {
         DentistDTO newDentist = dentistService.create(dentistDTO);
@@ -48,7 +48,7 @@ public class DentistController implements CRUDController<DentistDTO> {
 
     @PreAuthorize("hasRole('ADMIN')")
     @Override
-    @CrossOrigin
+    //@CrossOrigin
     @PutMapping("/{id}")
     public ResponseEntity<?> update(
             @Valid @RequestBody DentistDTO dentistDTO,
@@ -60,7 +60,7 @@ public class DentistController implements CRUDController<DentistDTO> {
 
     @PreAuthorize("hasRole('ADMIN')")
     @Override
-    @CrossOrigin
+    //@CrossOrigin
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteById(@PathVariable("id") Integer id) {
         dentistService.deleteById(id);
