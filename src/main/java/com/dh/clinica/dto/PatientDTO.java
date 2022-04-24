@@ -5,6 +5,8 @@ import java.time.LocalDate;
 
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class PatientDTO {
 
     private Integer id;
@@ -24,14 +26,14 @@ public class PatientDTO {
         this.address = address;
     }
 
-    public PatientDTO( String name, String lastname, String dni, AddressDTO address) {
+
+
+    public PatientDTO(String name, String lastname, String dni, AddressDTO address) {
         this.name = name;
         this.lastname = lastname;
         this.dni = dni;
         this.address = address;
     }
 
-    public PatientDTO() {
 
-    }
 }

@@ -1,0 +1,334 @@
+{
+	"info": {
+		"_postman_id": "5b80f962-c776-48ea-a004-aede9e5b00f8",
+		"name": "consultorio_odontologico",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "odontologo",
+			"item": [
+				{
+					"name": "createDentist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/odontologos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"odontologos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getDentistById",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "getAllDentist",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "getDentist licence",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "getDentist name lastname",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "updateDentist",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyaW8iLCJpYXQiOjE2NTA4Mzg0ODQsImV4cCI6MTY1MDkyNDg4NH0.cgjyS4_I4RfxAr3xqD5-J3-jBJzN9Lt1PYYPAx2wzG8g3w9NrKcUb_xk-oK__y40YbXcgODq-lvjh4NVOsGBoA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"dentista actualizado\",\r\n    \"lastname\": \"Perez s12\",\r\n    \"licence\": \"123ass\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/dentist/54",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"dentist",
+								"54"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteDentist",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyaW8iLCJpYXQiOjE2NTA4Mzg0ODQsImV4cCI6MTY1MDkyNDg4NH0.cgjyS4_I4RfxAr3xqD5-J3-jBJzN9Lt1PYYPAx2wzG8g3w9NrKcUb_xk-oK__y40YbXcgODq-lvjh4NVOsGBoA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/dentist/53",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"dentist",
+								"53"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user-login-register",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usernameOrMail\":\"juanpe\",\r\n    \"password\":\"clave\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"juan\",\r\n    \"username\":\"juanpe\",\r\n    \"mail\":\"juan11@gmail.com\",\r\n    \"password\":\"clave\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "turno",
+			"item": [
+				{
+					"name": "createTurno",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fecha\": \"2022-10-19T21:00:00\",\r\n    \"paciente\": {\r\n        \"id\": 1,\r\n        \"nombre\": \"paciente1\",\r\n        \"apellido\": \"apellido1\",\r\n        \"dni\": \"38657849\",\r\n        \"fechaIngreso\": \"2021-10-02\",\r\n        \"domicilioDTO\": null\r\n    },\r\n    \"odontologo\": {\r\n        \"id\": 1,\r\n        \"nombre\": \"Alexis\",\r\n        \"apellido\": \"petrovich\",\r\n        \"matricula\": \"123ass\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/turno",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"turno"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTurnById",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "getAllTurns",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "findNextWeek",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "findTurn dentist-patient",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "paciente",
+			"item": [
+				{
+					"name": "createPatient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"paciente1\",\r\n    \"apellido\": \"apellido1\",\r\n    \"dni\": \"38657849\",\r\n    \"fechaIngreso\": \"2022-04-09\",\r\n    \"domicilio\": {\r\n        \"id\":1,\r\n        \"calle\": 213,\r\n        \"numero\": 193,\r\n        \"localidad\": \"Saenz Peña\",\r\n        \"provincia\": \"Chaco\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/paciente",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"paciente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllPacientes",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "getPatient dni",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "getPatient name",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "getPatient id",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

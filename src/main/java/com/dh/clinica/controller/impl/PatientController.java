@@ -1,15 +1,12 @@
 package com.dh.clinica.controller.impl;
-
 import com.dh.clinica.controller.CRUDController;
 import com.dh.clinica.dto.PatientDTO;
 import com.dh.clinica.service.impl.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.List;
 
@@ -18,7 +15,6 @@ import java.util.List;
 public class PatientController implements CRUDController<PatientDTO> {
 
     @Autowired
-    @Qualifier("patientService")
     private PatientService patientService;
 
 
@@ -60,5 +56,16 @@ public class PatientController implements CRUDController<PatientDTO> {
     @GetMapping("/list")
     public ResponseEntity<List<PatientDTO>> findAll() {
         return new ResponseEntity<>(patientService.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/dni")
+    public ResponseEntity<PatientDTO> findByDni(@RequestParam String dni) {
+        PatientDTO patientDTO= patientService.findByDni(dni);
+        return new ResponseEntity<>(patientDTO, HttpStatus.OK);
+    }
+
+    @GetMapping("/name")
+    public ResponseEntity<List<PatientDTO>> findByName(@RequestParam String name) {
+        return new ResponseEntity<>(patientService.findByName(name), HttpStatus.OK);
     }
 }

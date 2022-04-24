@@ -28,8 +28,8 @@ public class Dentist {
     @Column(name = "licence",nullable = false)
     private String licence;
 
-    //------Relacion con Turnos
-    @OneToMany(mappedBy = "dentist", fetch = FetchType.LAZY)
+    //------Relacion con Turnos ---- TENIA LAZY -----
+    @OneToMany(mappedBy = "dentist", fetch = FetchType.EAGER)
     @JsonIgnore
     private Set<Turn> turns = new HashSet<>();
 

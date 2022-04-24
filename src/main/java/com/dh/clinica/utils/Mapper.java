@@ -1,9 +1,12 @@
 package com.dh.clinica.utils;
 
+import com.dh.clinica.dto.TurnDTO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
+import java.util.List;
 
 public class Mapper {
 
@@ -24,4 +27,5 @@ public class Mapper {
                 .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
                 .registerModule(new JavaTimeModule());
     }
+
 }

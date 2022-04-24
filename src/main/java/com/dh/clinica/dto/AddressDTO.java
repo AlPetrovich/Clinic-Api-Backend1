@@ -3,6 +3,7 @@ import com.dh.clinica.persistence.entities.Address;
 import lombok.*;
 
 @Data
+
 public class AddressDTO {
 
     private Integer id;
@@ -11,9 +12,7 @@ public class AddressDTO {
     private String location;
     private String province;
 
-    public AddressDTO(Integer id) {
-        this.id = id;
-    }
+
 
     public AddressDTO(String street, String number, String location, String province) {
         this.street = street;
@@ -21,6 +20,7 @@ public class AddressDTO {
         this.location = location;
         this.province = province;
     }
+
 
     public AddressDTO() {
     }
@@ -35,4 +35,6 @@ public class AddressDTO {
 
         return entity;
     }
+
+
 }

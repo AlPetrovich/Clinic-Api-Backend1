@@ -67,4 +67,13 @@ public class TurnController implements CRUDController<TurnDTO> {
         return ResponseEntity.status(HttpStatus.OK).body(turns);
     }
 
+    @GetMapping("/dentist/patient")
+    public ResponseEntity<List<TurnDTO>> findTurnsByDentistAndPatient(@RequestParam("dentist") String nameDentist, @RequestParam("patient") String namePatient){
+        List<TurnDTO> turns= turnService.findByDentistAndPatient(nameDentist, namePatient);
+        if (turns.size()==0) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(turns);
+    }
+
 }

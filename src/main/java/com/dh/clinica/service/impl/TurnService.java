@@ -6,6 +6,7 @@ import com.dh.clinica.exceptions.ResourceNotFoundException;
 import com.dh.clinica.persistence.entities.Turn;
 import com.dh.clinica.persistence.repositories.ITurnRepository;
 import com.dh.clinica.service.ITurnService;
+import org.apache.log4j.Logger;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,6 +20,8 @@ import java.util.stream.Stream;
 @Service
 @Qualifier("turnService")
 public class TurnService implements ITurnService {
+
+    private final Logger logger = Logger.getLogger(this.getClass());
 
     @Autowired
     private ITurnRepository turnRepository;
@@ -35,6 +38,7 @@ public class TurnService implements ITurnService {
 
     @Override
     public TurnDTO findById(Integer id) {
+        logger.debug("findById turn");
        Turn turn = turnRepository.findById(id)
                .orElseThrow(()-> new ResourceNotFoundException("Turn not found", "id", id));
        return mapDTO(turn);
@@ -42,6 +46,10 @@ public class TurnService implements ITurnService {
 
     @Override
     public TurnDTO create(TurnDTO turnDTO) {
+        logger.debug("create turn");
+        if(turnDTO.getPatient() == null || turnDTO.getDentist() == null){
+            throw new ResourceNotFoundException("Patient or Dentist not found", "name", turnDTO.getPatient().getName());
+        }
         //Nos aseguramos que tanto el odontologo como el paciente existan en la base de datos
         PatientDTO patientDTO = patientService.findById(turnDTO.getPatient().getId());
         DentistDTO dentistDTO= dentistService.findById(turnDTO.getDentist().getId());
@@ -61,6 +69,7 @@ public class TurnService implements ITurnService {
 
     @Override
     public void deleteById(Integer id) {
+        logger.debug("deleteById turn");
         Turn turn = turnRepository.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("Turn not found", "id", id));
         turnRepository.delete(turn);
@@ -69,6 +78,7 @@ public class TurnService implements ITurnService {
 
     @Override
     public TurnDTO update(TurnDTO turnDTO, Integer id) {
+        logger.debug("update turn");
         Turn turn = turnRepository.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("Turn not found", "id", id));
 
@@ -82,6 +92,7 @@ public class TurnService implements ITurnService {
 
     @Override
     public List<TurnDTO> findAll() {
+        logger.debug("findAll turns");
         List<Turn> turns = turnRepository.findAll();
         List<TurnDTO> turnDTOList = turns.stream().map(turn -> mapDTO(turn)).collect(Collectors.toList());
         return turnDTOList;
@@ -92,6 +103,8 @@ public class TurnService implements ITurnService {
         return null;
     }
 
+
+
     @Override
     public List<TurnDTO> findTurnsNextWeek() {
         List<Turn> turnsDB = turnRepository.findAll();
@@ -100,6 +113,14 @@ public class TurnService implements ITurnService {
         return turnDTOList;
     }
 
+
+    @Override
+    public List<TurnDTO> findByDentistAndPatient(String nameDentist, String namePatient) {
+        List<Turn> turnsDB = turnRepository.findByDentistAndPatient(nameDentist, namePatient)
+                .orElseThrow(()-> new ResourceNotFoundException("Turn not found", "nameDentist", nameDentist));
+        List<TurnDTO> turnDTOList = turnsDB.stream().map(turn -> mapDTO(turn)).collect(Collectors.toList());
+        return turnDTOList;
+    }
 
     //-------------------MODEL MAPPER ------------------------
     private TurnDTO mapDTO(Turn turn){

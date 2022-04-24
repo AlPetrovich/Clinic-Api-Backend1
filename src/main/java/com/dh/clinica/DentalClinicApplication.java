@@ -18,3 +18,14 @@ public class DentalClinicApplication {
 	}
 
 }
+
+//***************REPOSITORY BACKEND API-CLINIC ********************
+//https://github.com/AlPetrovich/Clinic-Api-Backend1
+
+
+//***************REPOSITORY VIEW WITH REACT IN PROGRESS ********************
+//https://github.com/AlPetrovich/Clinic-Frontend-React
+
+
+//contacts
+//-------------------------alexispetrovich11@gmail.com-------------------------

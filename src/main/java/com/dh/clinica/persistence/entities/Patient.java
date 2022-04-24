@@ -35,8 +35,8 @@ public class Patient {
     @Column(name = "accessDate",nullable = false)
     private LocalDate accessDate;
 
-    //------Relacion con turnos
-    @OneToMany(mappedBy = "patient", fetch = FetchType.LAZY)
+    //------Relacion con turnos --- tenia lazy
+    @OneToMany(mappedBy = "patient", fetch = FetchType.EAGER)
     @JsonIgnore
     private Set<Turn> turns = new HashSet<>();
 

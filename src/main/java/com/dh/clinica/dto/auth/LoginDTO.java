@@ -5,6 +5,14 @@ public class LoginDTO {
     private String usernameOrMail;
     private String password;
 
+    public LoginDTO() {
+    }
+
+    public LoginDTO(String usernameOrMail, String password) {
+        this.usernameOrMail = usernameOrMail;
+        this.password = password;
+    }
+
     public String getUsernameOrMail() {
         return usernameOrMail;
     }

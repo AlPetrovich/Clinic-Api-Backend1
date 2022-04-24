@@ -1,0 +1,23 @@
+[2022-04-24 19:07:06] [DEBUG] [DentistService:80] findAll DentistService
+[2022-04-24 19:15:26] [DEBUG] [DentistService:64] update DentistService
+[2022-04-24 19:16:30] [DEBUG] [DentistService:55] deleteById DentistService
+[2022-04-24 19:16:48] [DEBUG] [DentistService:31] findById DentistService
+[2022-04-24 19:16:52] [DEBUG] [DentistService:31] findById DentistService
+[2022-04-24 19:16:57] [DEBUG] [DentistService:31] findById DentistService
+[2022-04-24 19:17:58] [DEBUG] [TurnService:41] findById turn
+[2022-04-24 19:18:46] [DEBUG] [TurnService:49] create turn
+[2022-04-24 19:19:14] [DEBUG] [TurnService:49] create turn
+[2022-04-24 19:19:14] [DEBUG] [PatientService:33] PatientService.findById()
+[2022-04-24 19:19:14] [DEBUG] [DentistService:31] findById DentistService
+[2022-04-24 19:19:33] [DEBUG] [TurnService:95] findAll turns
+[2022-04-24 19:20:37] [DEBUG] [TurnService:49] create turn
+[2022-04-24 19:20:37] [DEBUG] [PatientService:33] PatientService.findById()
+[2022-04-24 19:20:37] [DEBUG] [DentistService:31] findById DentistService
+[2022-04-24 19:22:58] [DEBUG] [PatientService:43] PatientService.create()
+[2022-04-24 19:23:20] [DEBUG] [PatientService:43] PatientService.create()
+[2022-04-24 19:23:55] [DEBUG] [PatientService:43] PatientService.create()
+[2022-04-24 19:24:45] [DEBUG] [PatientService:33] PatientService.findById()
+[2022-04-24 19:24:49] [DEBUG] [PatientService:33] PatientService.findById()
+[2022-04-24 19:25:12] [DEBUG] [PatientService:43] PatientService.create()
+[2022-04-24 19:25:31] [DEBUG] [PatientService:77] PatientService.findAll()
+[2022-04-24 19:27:56] [DEBUG] [PatientService:33] PatientService.findById()

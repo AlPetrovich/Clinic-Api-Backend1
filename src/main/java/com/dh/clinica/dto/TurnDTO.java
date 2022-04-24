@@ -21,4 +21,6 @@ public class TurnDTO {
 
     public TurnDTO() {
     }
+
+
 }

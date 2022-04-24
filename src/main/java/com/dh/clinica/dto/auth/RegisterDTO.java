@@ -8,6 +8,16 @@ public class RegisterDTO {
     private String mail;
     private String password;
 
+    public RegisterDTO() {
+    }
+
+    public RegisterDTO(String name, String username, String mail, String password) {
+        this.name = name;
+        this.username = username;
+        this.mail = mail;
+        this.password = password;
+    }
+
     public String getName() {
         return name;
     }

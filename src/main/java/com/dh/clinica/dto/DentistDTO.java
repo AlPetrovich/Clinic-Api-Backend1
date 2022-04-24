@@ -5,6 +5,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Data
+@AllArgsConstructor
 public class DentistDTO {
 
 
@@ -29,4 +30,6 @@ public class DentistDTO {
     public DentistDTO() {
 
     }
+
+
 }

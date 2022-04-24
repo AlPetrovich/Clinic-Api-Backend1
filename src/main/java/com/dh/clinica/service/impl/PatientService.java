@@ -4,19 +4,19 @@ import com.dh.clinica.exceptions.ResourceNotFoundException;
 import com.dh.clinica.persistence.entities.Patient;
 import com.dh.clinica.persistence.repositories.IPatientRepository;
 import com.dh.clinica.service.IPatientService;
+import org.apache.log4j.Logger;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
+
 import java.util.stream.Collectors;
 
 @Service
-@Qualifier("patientService")
 public class PatientService implements IPatientService {
+
+    private final Logger logger = Logger.getLogger(this.getClass());
 
     @Autowired
     private IPatientRepository patientRepository;
@@ -24,11 +24,13 @@ public class PatientService implements IPatientService {
     @Autowired
     private AddressService addressService;
 
+
     @Autowired
     private ModelMapper modelMapper;
 
     @Override
     public PatientDTO findById(Integer id) {
+        logger.debug("PatientService.findById()");
         Patient patient = patientRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Patient", "id", id));
         return mapDTO(patient);
@@ -38,47 +40,58 @@ public class PatientService implements IPatientService {
 
     @Override
     public PatientDTO create(PatientDTO patientDTO) {
+        logger.debug("PatientService.create()");
         if(patientDTO == null){
-            throw new ResourceNotFoundException("Patient", "id", null);
+            throw new ResourceNotFoundException("Patient", "id", (Integer) null);
         }
-        //seteo fecha ingreso
         patientDTO.setAccessDate(LocalDate.now());
-        //guardo paciente como entidad
-        Patient patient = mapEntity(patientDTO);
-        Patient savePatientResponse = patientRepository.save(patient);
-
-        return mapDTO(savePatientResponse);
+        Patient patient =  patientRepository.save(mapEntity(patientDTO));
+        return mapDTO(patient);
     }
 
     @Override
     public void deleteById(Integer id) {
+        logger.debug("PatientService.deleteById()");
          Patient patient = patientRepository.findById(id)
                  .orElseThrow((() -> new ResourceNotFoundException("Patient", "id", id)));
          patientRepository.delete(patient);
     }
 
-    // -------------------VER-------------
 
     @Override
     public PatientDTO update(PatientDTO patientDTO, Integer id) {
+        logger.debug("PatientService.update()");
         Patient patient = patientRepository.findById(id)
                 .orElseThrow((() -> new ResourceNotFoundException("Patient", "id", id)));
-
         patient.setName(patientDTO.getName());
         patient.setLastname(patientDTO.getLastname());
         patient.setDni(patientDTO.getDni());
         patient.setAccessDate(patientDTO.getAccessDate());
-        //2-opciones
-        //paciente.setDomicilio(pacienteDTO.getDomicilioDTO().toEntity());
         patient.setAddress(addressService.mapEntity(patientDTO.getAddress()));
         Patient updatedPatient = patientRepository.save(patient);
-
         return mapDTO(updatedPatient);
     }
 
     @Override
     public List<PatientDTO> findAll() {
+        logger.debug("PatientService.findAll()");
         List<Patient> patientList = patientRepository.findAll();
+        List<PatientDTO> patientDTOS = patientList.stream().map(patient -> mapDTO(patient)).collect(Collectors.toList());
+        return patientDTOS;
+    }
+
+
+    @Override
+    public PatientDTO findByDni(String dni) {
+        Patient patient = patientRepository.findByDni(dni)
+                .orElseThrow((() -> new ResourceNotFoundException("Patient", "dni", dni)));
+        return mapDTO(patient);
+    }
+
+    @Override
+    public List<PatientDTO> findByName(String name) {
+        List<Patient> patientList = patientRepository.findByName(name)
+                .orElseThrow((() -> new ResourceNotFoundException("Patient", "name", name)));
         List<PatientDTO> patientDTOS = patientList.stream().map(patient -> mapDTO(patient)).collect(Collectors.toList());
         return patientDTOS;
     }
@@ -93,4 +106,6 @@ public class PatientService implements IPatientService {
         Patient patient = modelMapper.map(patientDTO, Patient.class);
         return patient;
     }
+
+
 }

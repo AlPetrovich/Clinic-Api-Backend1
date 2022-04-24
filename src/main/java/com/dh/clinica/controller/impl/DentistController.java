@@ -67,5 +67,16 @@ public class DentistController implements CRUDController<DentistDTO> {
         return new ResponseEntity<>("Dentist removed",HttpStatus.OK);
     }
 
+    @GetMapping("/licence")
+    public ResponseEntity<DentistDTO> findByLicence(@RequestParam("licence") String licence){
+        DentistDTO dentistDTO = dentistService.findByLicence(licence);
+        return new ResponseEntity<>(dentistDTO, HttpStatus.OK);
+    }
+
+    @GetMapping("/nameLastname")
+    public ResponseEntity<List<DentistDTO>> findByNameAndLastName(@RequestParam("name") String name, @RequestParam("lastname") String lastname){
+        List<DentistDTO> dentistDTOList=dentistService.findByNameAndLastname(name, lastname);
+        return new ResponseEntity<>(dentistDTOList, HttpStatus.OK);
+    }
 
 }
