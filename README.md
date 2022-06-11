@@ -1,11 +1,12 @@
 CTD-Back-End 1 - Proyecto Integrador: Clínica Odontológica
 
-El proyecto es una API REST de una clínica odontológica en proceso.
-Frontend en proceso https://github.com/AlPetrovich/Clinic-Frontend-React con REACT
+El proyecto es una API REST de una clínica odontológica.
+Frontend en proceso https://github.com/AlPetrovich/Clinic-Frontend-React con REACT.
 
-Descripcion: 
+# Tecnologías
+JAVA - MAVEN - Spring Boot MVC- Spring Data - Spring Security - JWT - CORS - MySQL - Data transfer object -
+Hibernate - Password Encoder
 
-Requesitos:
 
 UML -
 
