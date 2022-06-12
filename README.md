@@ -5,7 +5,7 @@ Frontend en proceso https://github.com/AlPetrovich/Clinic-Frontend-React con REA
 
 # Tecnologías
 JAVA - MAVEN - Spring Boot MVC- Spring Data - Spring Security - JWT - CORS - MySQL - Data transfer object -
-Hibernate - Password Encoder
+Hibernate - Password Encoder - JUnit 5 - Mockito
 
 
 UML -
